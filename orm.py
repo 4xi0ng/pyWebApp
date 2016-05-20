@@ -73,8 +73,21 @@ class IntegerField(Field):
     def __init__(self, name=None, primary_key=False, default=0):
         super().__init__(name, 'bigint', primary_key, default)
 		
-#定义Model
-class Model(dict,metaclass=ModelMetaclass)
+class FloatField(Field):
+    def __init__(self, name=None, primary_key=False, default=0.0):
+        super().__init__(name, 'real', primary_key, default)
+		
+class TextField(Field):
+    def __init__(self, name=None, default=None):
+        super().__init__(name, 'text', False, default)
+
+		
+#定义ModelMetaclass元类:
+class ModelMetaclass(type):
+	def __new__(cls, name, bases, attrs):
+		if name=='Model':
+			return type.__new__(cls, name, bases, attrs)
+		
 		
 		
 		
